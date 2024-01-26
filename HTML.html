@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Random Cat Image</title>
+    <style>
+        #newImage {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            transition-duration: 0.4s;
+        }
+
+        #newImage:hover {
+            background-color: white;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1>Random Cat Image</h1>
+        <button id="newImage">New Image</button>
+        <br/>
+        <img id="randomCatImage" src="" alt="Random Cat Image" style="margin-top: 20px;">
+    </center>
+
+    <script>
+        document.getElementById('newImage').addEventListener('click', function() {
+            fetch('https://api.unsplash.com/photos/random?query=cats&client_id=JcbpJ5ux-l0k4iB-_Vtn92rfCLkrBhHUZiPgxBD27Fo')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('randomCatImage').src = data.urls.small;
+                })
+                .catch(error => console.error(error));
+        });
+    </script>
+</body>
+</html>
